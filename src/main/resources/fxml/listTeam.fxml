@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<StackPane fx:controller="com.guyuan.manager.controller.TeamController" xmlns:fx="http://javafx.com/fxml">
+    <VBox>
+        <TableView fx:id="teamTableView" prefHeight="570" style="-fx-background-color:#fff;">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="团队名" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="leaderColumn" text="负责人" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="leader"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="memberCountColumn" text="团队人数" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="memberCount"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="contactColumn" text="联系方式" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="contact"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="createTimeColumn" text="创建时间" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="createTime"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>

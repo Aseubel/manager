@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<StackPane fx:controller="com.guyuan.manager.controller.UserController" xmlns:fx="http://javafx.com/fxml" stylesheets="@styles.css">
+    <Label fx:id="memberIdField" disable="true" opacity="0"/>
+    <VBox spacing="5">
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="搜索姓名:"/>
+            <TextField fx:id="searchUsernameField" promptText="输入真实姓名"/>
+            <Button text="搜索" onAction="#handleSearchV"/>
+        </HBox>
+        <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+                  alignment="CENTER" hgap="10" vgap="10" prefWidth="800" prefHeight="600"
+                  style="-fx-padding: 20;">
+            <Label text="真实姓名:"/>
+            <Label fx:id="nameFieldV" GridPane.columnIndex="1"/>
+
+            <Label text="性别:" GridPane.columnIndex="2"/>
+            <Label fx:id="genderV" GridPane.columnIndex="3"/>
+
+            <Label text="加入时间:" GridPane.rowIndex="1"/>
+            <Label fx:id="entryTimeFieldV" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="所属团队/职位：" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
+            <ChoiceBox fx:id="teamChoiceBoxV" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-min-width: 100"/>
+
+            <Label text="身份证号:" GridPane.rowIndex="2"/>
+            <Label fx:id="idFieldV" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="手机号:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <Label fx:id="phoneFieldV" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+            <Label text="邮箱:" GridPane.rowIndex="3"/>
+            <Label fx:id="emailFieldV" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="年级:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <Label fx:id="gradeFieldV" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+            <Label text="学号:" GridPane.rowIndex="4"/>
+            <Label fx:id="studentIdFieldV" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="专业:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <Label fx:id="majorFieldV" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+
+            <Label text="实习、创业、就业经历:" GridPane.rowIndex="5"/>
+            <TextArea fx:id="experienceAreaV" GridPane.columnSpan="2" GridPane.rowIndex="6" prefHeight="150" wrapText="true" editable="false"/>
+
+            <Label text="现状:" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+            <TextArea fx:id="currentStatusAreaV" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.columnIndex="2"
+                      prefHeight="150" wrapText="true" editable="false"/>
+        </GridPane>
+    </VBox>
+
+</StackPane>
+

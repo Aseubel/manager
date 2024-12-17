@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      fx:controller="com.guyuan.manager.controller.IndexController"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      prefWidth="800.0" prefHeight="600.0">
+    <AnchorPane prefWidth="800.0" prefHeight="600.0">
+        <!--背景图片-->
+        <ImageView fitWidth="800.0" fitHeight="600.0">
+            <Image url="@/static/1.jpg"/>
+            <opacity>0.3</opacity>
+        </ImageView>
+        <VBox spacing="10">
+            <MenuBar fx:id="menuBar" prefWidth="800.0">
+                <Menu text="用户管理">
+                    <MenuItem onAction="#searchUser" text="查找用户"/>
+                    <MenuItem onAction="#addUser" text="添加用户"/>
+                    <MenuItem onAction="#modifyUser" text="修改用户"/>
+                </Menu>
+                <Menu text="团队管理">
+                    <MenuItem onAction="#listTeam" text="团队列表"/>
+                    <MenuItem onAction="#searchTeam" text="查找团队"/>
+                    <MenuItem onAction="#addTeam" text="添加团队"/>
+                    <MenuItem onAction="#modifyTeam" text="修改团队"/>
+                </Menu>
+                <Menu text="系统操作">
+                    <MenuItem onAction="#lastPage" text="上一页"/>
+                    <MenuItem onAction="#nextPage" text="下一页"/>
+                    <MenuItem onAction="#clearAll" text="清空"/>
+                    <MenuItem onAction="#logout" text="退出登录"/>
+                </Menu>
+            </MenuBar>
+            <StackPane fx:id="contentBox"/>
+        </VBox>
+        <Label fx:id="pageIndex" text="0/0" layoutX="700" layoutY="5"/>
+    </AnchorPane>
+</VBox>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      fx:controller="com.guyuan.manager.controller.TestController"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      prefWidth="800.0" prefHeight="600.0" stylesheets="@styles.css">
+    <ComboBox fx:id="comboBox1" onAction="#handleComboBox1Action"/>
+    <ComboBox fx:id="comboBox2" disable="true"/>
+</VBox>

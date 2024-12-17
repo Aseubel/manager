@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      fx:controller="com.guyuan.manager.controller.LoginController"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      prefWidth="800" prefHeight="600.0">
+    <AnchorPane prefWidth="800.0" prefHeight="600.0" >
+        <!--背景图片-->
+        <ImageView fitWidth="800.0" fitHeight="600.0">
+            <Image url="@/static/1.jpg"/>
+            <opacity>0.3</opacity>
+        </ImageView>
+
+        <Label layoutX="280" layoutY="100.0" text="欢迎使用团队管理系统！"
+               style="-fx-font-size: 24px; -fx-text-fill: #1EC6FC;"/>
+        <Label layoutX="284.0" layoutY="223.0" text="账 号：" style="-fx-font-size: 14"/>
+        <TextField fx:id="usernameField" layoutX="331.0" layoutY="223.0" prefHeight="23.0" prefWidth="182.0"/>
+        <Label layoutX="284.0" layoutY="257.0" text="密 码：" style="-fx-font-size: 14"/>
+        <PasswordField fx:id="passwordField" layoutX="331.0" layoutY="256.0" prefHeight="23.0" prefWidth="182.0"/>
+        <Button fx:id="loginButton" layoutX="282.0" layoutY="310.0" mnemonicParsing="false" prefHeight="35.0"
+                prefWidth="236.0"
+                style="-fx-background-color: #1EC6FC;" text="登  录" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <CheckBox layoutX="283.0" layoutY="283.0" mnemonicParsing="false" text="自动登录" textFill="#a6a6a6"/>
+        <CheckBox layoutX="373.0" layoutY="283.0" mnemonicParsing="false" text="记住密码" textFill="#a6a6a6"/>
+        <Label layoutX="462.0" layoutY="282.0" text="找回密码" textFill="#a6a6a6" style="-fx-font-size: 14"/>
+    </AnchorPane>
+</VBox>

@@ -1,0 +1,11 @@
+.no-border {
+    -fx-border-color: white; /* 去掉边框 */
+    -fx-background-color: white; /* 去掉背景颜色 */
+    -fx-focus-color: white; /* 去掉获得焦点时的边框颜色 */
+    -fx-faint-focus-color: white; /* 去掉微弱焦点颜色 */
+}
+
+.combo-box {
+    -fx-pref-width: 100;
+    -fx-max-width: 100;
+}
