@@ -7,11 +7,11 @@ import java.lang.annotation.Target;
 
 /**
  * @author yangzhiyao
- * @description 记录历史场景注解
- * @date 2024/12/10
+ * @description 需要请求服务端的注解
+ * @date 2024/12/19
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Page {
+public @interface DoRequest {
     String value() default "";
 }
