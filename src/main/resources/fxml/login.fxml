@@ -24,7 +24,7 @@
         <TextField fx:id="usernameField" layoutX="331.0" layoutY="223.0" prefHeight="23.0" prefWidth="182.0"/>
         <Label layoutX="284.0" layoutY="257.0" text="密 码：" style="-fx-font-size: 14"/>
         <PasswordField fx:id="passwordField" layoutX="331.0" layoutY="256.0" prefHeight="23.0" prefWidth="182.0"/>
-        <Button fx:id="loginButton" layoutX="282.0" layoutY="310.0" mnemonicParsing="false" prefHeight="35.0"
+        <Button onAction="#login" layoutX="282.0" layoutY="310.0" mnemonicParsing="false" prefHeight="35.0"
                 prefWidth="236.0"
                 style="-fx-background-color: #1EC6FC;" text="登  录" textAlignment="CENTER" textFill="WHITE">
             <font>
