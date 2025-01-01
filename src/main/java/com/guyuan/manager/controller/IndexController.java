@@ -51,79 +51,100 @@ public class IndexController implements Initializable {
     @FXML
     public void searchUser(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("searchUser");
             transferScene.loadScene(contentBox, "searchUser", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问查找用户页面失败！",e);
         }
     }
     @FXML
     public void addUser(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("addUser");
             transferScene.loadScene(contentBox, "addUser", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问添加用户页面失败！",e);
         }
     }
     @FXML
     public void modifyUser(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("modifyUser");
             transferScene.loadScene(contentBox, "modifyUser", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问修改用户信息页面失败！",e);
         }
     }
 
     @FXML
     public void listTeam(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("listTeam");
             transferScene.loadScene(contentBox, "listTeam", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问团队列表页面失败！",e);
         }
     }
     @FXML
     public void searchTeam(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("searchTeam");
             transferScene.loadScene(contentBox, "searchTeam", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问查找团队页面失败！",e);
         }
     }
     @FXML
     public void addTeam(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("addTeam");
             transferScene.loadScene(contentBox, "addTeam", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问添加团队页面失败！",e);
         }
     }
     @FXML
     public void modifyTeam(ActionEvent actionEvent) {
         try {
+            if(!HttpClientUtils.doGet("auth")) {
+                return;
+            }
             // 当前页面不变，则为false不记录页面历史
             Boolean type = isNeededToRecord("modifyTeam");
             transferScene.loadScene(contentBox, "modifyTeam", type);
             pageIndex.setText(getPageIndex());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("访问修改团队页面失败！",e);
         }
     }
 

@@ -11,13 +11,11 @@ import com.guyuan.manager.dao.po.UserPO;
 import com.guyuan.manager.exception.MyException;
 import com.guyuan.manager.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -296,6 +294,77 @@ public class UserServiceImpl implements IUserService {
 //            List<String> roleIds = roleMapper.listRoleIdsByNames(roleNames);
 //            roleMapper.addUserRoles(userId, roleIds);
 //        }
+    }
+
+    @Override
+    public List<UserEntity> queryMemberList(String teamId, String lastUserId, Integer limit) {
+        List<UserEntity> members = new ArrayList<>();
+
+        Long lastId = StringUtil.isNullOrEmpty(lastUserId) ? 0 : userMapper.getIdByUserId(lastUserId);
+        List<UserPO> userPOList = userMapper.listMemberByTeamId(teamId, lastId, limit);
+        for (UserPO userPO : userPOList) {
+            String userId = userPO.getUserId();
+
+            // 封装position信息，先存根节点
+            List<List<PositionPO>> positionPOList = new ArrayList<>();
+            List<PositionPO> listPositions = positionMapper.listPositionByUserId(userId);
+            for(PositionPO rootPosition : listPositions) {
+                List<PositionPO> tempList = new ArrayList<>();
+                tempList.add(rootPosition);
+                positionPOList.add(tempList);
+            }
+            // 顺序获取父节点，并父子节点添加到根节点的children中
+            if (!CollectionUtil.isEmpty(listPositions)) {
+                listPositions = positionMapper.listParentPositionByPositions(listPositions);
+            }
+            while(!CollectionUtil.isEmpty(listPositions)) {
+                for (PositionPO positionPO : listPositions) {
+                    for (List<PositionPO> positionList : positionPOList) {
+                        if (positionList.get(positionList.size() - 1)
+                                .getPositionId()
+                                .equals(positionPO.getSubordinate())) {
+                            positionList.add(positionPO);
+                            break;
+                        }
+                    }
+                }
+                listPositions = positionMapper.listParentPositionByPositions(listPositions);
+            }
+            // 单取职位名称，包括团队名称
+            List<List<String>> positionNames = new ArrayList<>();
+            for(List<PositionPO> positionList : positionPOList) {
+                List<String> tempList = new ArrayList<>();
+                // 第一个元素为positionId，便于在修改时定位到该职位发送请求
+                tempList.add(positionList.get(0).getPositionId());
+                for(int i = positionList.size() - 1; i >= 0; i--) {
+                    tempList.add(positionList.get(i).getPositionName());
+                }
+                positionNames.add(tempList);
+            }
+            UserEntity userEntity = UserEntity.builder()
+                    .userId(userPO.getUserId())
+                    .userName(userPO.getUserName())
+                    .phone(userPO.getPhone())
+                    .gender(userPO.getGender())
+                    .idCard(userPO.getIdCard())
+                    .email(userPO.getEmail())
+                    .grade(userPO.getGrade())
+                    .major(userPO.getMajor())
+                    .studentId(userPO.getStudentId())
+                    .experience(userPO.getExperience())
+                    .currentStatus(userPO.getCurrentStatus())
+                    .entryTime(userPO.getEntryTime())
+                    .likeCount(userPO.getLikeCount())
+                    .liked(false)
+                    .positions(positionNames)
+                    .roles(null)
+                    .build();
+
+            // 转换positionNames格式，便于前端选择显示
+            userEntity = convertToMemberListPositionNames(userEntity);
+            members.add(userEntity);
+        }
+        return members;
     }
 
     private static UserEntity convertToMemberListPositionNames(UserEntity userEntity) {

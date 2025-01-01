@@ -6,8 +6,57 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <StackPane fx:controller="com.guyuan.manager.controller.TeamController" xmlns:fx="http://javafx.com/fxml"
            stylesheets="@styles.css">
+    <VBox spacing="5">
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="搜索姓名:"/>
+            <TextField fx:id="searchTeamNameField" promptText="输入团队名称"/>
+            <Button text="搜索" onAction="#handleSearchTeam"/>
+        </HBox>
+        <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+                  hgap="10" vgap="10" prefWidth="800" prefHeight="600"
+                  style="-fx-padding: 20;">
+            <Label text="团队名称:"/>
+            <Label fx:id="teamNameField" GridPane.columnIndex="1"/>
 
+            <Label text="领导人:" GridPane.columnIndex="2"/>
+            <Label fx:id="leaderField" GridPane.columnIndex="3"/>
 
+            <Label text="联系方式:" GridPane.rowIndex="2"/>
+            <Label fx:id="contactField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="创建时间:" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+            <Label fx:id="createTimeField" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+
+            <Label text="人数:" GridPane.rowIndex="3"/>
+            <Label fx:id="memberCountField" GridPane.columnIndex="1"/>
+
+            <TableView fx:id="membersTableView" GridPane.rowIndex="4" GridPane.columnSpan="6" prefHeight="500">
+                <columns>
+                    <TableColumn text="姓名" fx:id="memberNameColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="userName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="手机号码" fx:id="phoneColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="phone"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="专业" fx:id="majorColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="major"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="邮箱" fx:id="emailColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </GridPane>
+    </VBox>
 </StackPane>

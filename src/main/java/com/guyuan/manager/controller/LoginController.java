@@ -5,6 +5,7 @@ import com.guyuan.manager.Entity.UserEntity;
 import com.guyuan.manager.annotation.DoRequest;
 import com.guyuan.manager.service.IUserService;
 import com.guyuan.manager.util.HostHolder;
+import com.guyuan.manager.util.HttpClientUtils;
 import com.guyuan.manager.util.TransferScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,29 +27,31 @@ import java.util.ResourceBundle;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class LoginController implements Initializable {
 
+    private final HttpClientUtils httpClientUtils;
     @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
 
-    @Autowired
-    private IUserService userService;
+    private final IUserService userService;
 
-    @Autowired
-    private TransferScene transferScene;
-
-    @Autowired
-    private HostHolder hostHolder;
+    private final TransferScene transferScene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
+//    @DoRequest("auth")
+    @FXML
     public void login(ActionEvent actionEvent) {
+        if(!HttpClientUtils.doGet("auth")) {
+            return;
+        }
         String userName = usernameField.getText();
         String password = passwordField.getText();
         if (userName.isEmpty() || password.isEmpty()) {

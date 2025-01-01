@@ -2,6 +2,8 @@ package com.guyuan.manager.service;
 
 import com.guyuan.manager.Entity.UserEntity;
 
+import java.util.List;
+
 /**
  * @author 杨之耀
  * @description 用户服务统一接口
@@ -32,4 +34,11 @@ public interface IUserService {
      * @param userId
      */
     void AddUser(UserEntity userEntity, String userId);
+
+    /**
+     * 查询某团队的成员
+     * @param teamId
+     * @return
+     */
+    List<UserEntity> queryMemberList(String teamId, String lastUserId, Integer limit);
 }

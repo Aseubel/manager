@@ -27,8 +27,8 @@ import static com.guyuan.manager.ManagerApplication.applicationContext;
 @Component
 public class TransferScene {
 
-    private static ThreadLocal<List<String>> scenes = new ThreadLocal<>();
-    private static ThreadLocal<Integer> sceneIndex = new ThreadLocal<>();
+    private static final ThreadLocal<List<String>> scenes = new ThreadLocal<>();
+    private static final ThreadLocal<Integer> sceneIndex = new ThreadLocal<>();
 
     public static List<String> getScenes() {
         return scenes.get();

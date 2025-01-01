@@ -1,5 +1,7 @@
 package com.guyuan.manager.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.guyuan.manager.Entity.TeamEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -8,5 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2024/12/12
  */
 @Mapper
-public class TeamMapper {
+public interface TeamMapper extends BaseMapper<TeamEntity> {
 }

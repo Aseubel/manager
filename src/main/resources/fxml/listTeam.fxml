@@ -9,11 +9,11 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <StackPane fx:controller="com.guyuan.manager.controller.TeamController" xmlns:fx="http://javafx.com/fxml">
     <VBox>
-        <TableView fx:id="teamTableView" prefHeight="570" style="-fx-background-color:#fff;">
+        <TableView fx:id="teamTableView" prefHeight="570">
             <columns>
                 <TableColumn fx:id="nameColumn" text="团队名" prefWidth="150">
                     <cellValueFactory>
-                        <PropertyValueFactory property="name"/>
+                        <PropertyValueFactory property="teamName"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="leaderColumn" text="负责人" prefWidth="150">
@@ -33,7 +33,7 @@
                 </TableColumn>
                 <TableColumn fx:id="createTimeColumn" text="创建时间" prefWidth="150">
                     <cellValueFactory>
-                        <PropertyValueFactory property="createTime"/>
+                        <PropertyValueFactory property="createTimeString"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>

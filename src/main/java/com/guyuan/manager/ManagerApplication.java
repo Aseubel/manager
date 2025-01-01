@@ -29,7 +29,7 @@ public class ManagerApplication extends Application {
 		if (resource == null) {
 			throw new Exception();
 		}
-		// 加载 fxml 下面的逻辑可以单独封装
+		// 加载 fxml
 		FXMLLoader loader = new FXMLLoader(resource);
 		loader.setControllerFactory(param -> applicationContext.getBean(param));
 
