@@ -31,7 +31,11 @@
             </ChoiceBox>
 
             <Label text="加入时间:" GridPane.rowIndex="1"/>
-            <TextField fx:id="entryTimeField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" alignment="CENTER">
+                <DatePicker fx:id="timePicker"/>
+                <Label fx:id="selectedTimeLabel" text="未选定时间"/>
+            </VBox>
+<!--            <TextField fx:id="entryTimeField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>-->
 
             <Label text="所属团队/职位：" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
             <ChoiceBox fx:id="teamChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-min-width: 100"/>

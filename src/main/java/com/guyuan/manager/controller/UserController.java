@@ -1,10 +1,10 @@
 package com.guyuan.manager.controller;
 
 import ch.qos.logback.core.util.StringUtil;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.guyuan.manager.Entity.UserEntity;
 import com.guyuan.manager.exception.MyException;
+import com.guyuan.manager.service.ITeamService;
 import com.guyuan.manager.service.IUserService;
 import com.guyuan.manager.util.HostHolder;
 import com.guyuan.manager.util.TransferType;
@@ -22,7 +22,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 /**
  * @author 杨之耀
@@ -33,33 +32,35 @@ import java.util.UUID;
 @Controller
 public class UserController implements Initializable {
 
-    @FXML public Label nameFieldV;
-    @FXML public Label genderV;
-    @FXML public Label entryTimeFieldV;
-    @FXML public ChoiceBox<String> teamChoiceBoxV;
-    @FXML public Label idFieldV;
-    @FXML public Label phoneFieldV;
-    @FXML public Label emailFieldV;
-    @FXML public Label gradeFieldV;
-    @FXML public Label studentIdFieldV;
-    @FXML public Label majorFieldV;
-    @FXML public TextArea experienceAreaV;
-    @FXML public TextArea currentStatusAreaV;
+    @FXML private Label nameFieldV;
+    @FXML private Label genderV;
+    @FXML private Label entryTimeFieldV;
+    @FXML private ChoiceBox<String> teamChoiceBoxV;
+    @FXML private Label idFieldV;
+    @FXML private Label phoneFieldV;
+    @FXML private Label emailFieldV;
+    @FXML private Label gradeFieldV;
+    @FXML private Label studentIdFieldV;
+    @FXML private Label majorFieldV;
+    @FXML private TextArea experienceAreaV;
+    @FXML private TextArea currentStatusAreaV;
 
-    @FXML public TextField nameField;
-    @FXML public ChoiceBox<String> genderChoiceBox;
-    @FXML public TextField entryTimeField;
-    @FXML public ChoiceBox<String> teamChoiceBox;
-    @FXML public TextField idField;
-    @FXML public TextField phoneField;
-    @FXML public TextField emailField;
-    @FXML public TextField gradeField;
-    @FXML public TextField studentIdField;
-    @FXML public TextField majorField;
-    @FXML public TextArea experienceArea;
-    @FXML public TextArea currentStatusArea;
-    @FXML public Label memberIdField;
-    @FXML public Label addResultLabel;
+    @FXML private TextField nameField;
+    @FXML private ChoiceBox<String> genderChoiceBox;
+//    @FXML private TextField entryTimeField;
+    @FXML private DatePicker timePicker;
+    @FXML private Label selectedTimeLabel;
+    @FXML private ChoiceBox<String> teamChoiceBox;
+    @FXML private TextField idField;
+    @FXML private TextField phoneField;
+    @FXML private TextField emailField;
+    @FXML private TextField gradeField;
+    @FXML private TextField studentIdField;
+    @FXML private TextField majorField;
+    @FXML private TextArea experienceArea;
+    @FXML private TextArea currentStatusArea;
+    @FXML private Label memberIdField;
+    @FXML private Label addResultLabel;
 
     @FXML
     private TextField searchUsernameField;
@@ -73,11 +74,26 @@ public class UserController implements Initializable {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private ITeamService teamService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] path = url.getPath().split("/");
         String fileName = path[path.length - 1];
         if (fileName.equals("modifyUser.fxml")) {
+            ObservableList<String> options1 = FXCollections.observableArrayList("研发组", "设计组", "产品组","团队负责人");
+            comboBoxt.setItems(options1);
+            // 监听时间选择事件
+            timePicker.setOnAction(event -> {
+                LocalDate selectedTime = timePicker.getValue();
+                if (selectedTime != null) {
+                    selectedTimeLabel.setText("选定的时间: " + selectedTime.toString());
+                } else {
+                    selectedTimeLabel.setText("未选定时间");
+                }
+            });
+        } else if (fileName.equals("addUser.fxml")) {
             ObservableList<String> options1 = FXCollections.observableArrayList("研发组", "设计组", "产品组","团队负责人");
             comboBoxt.setItems(options1);
         }
@@ -105,7 +121,8 @@ public class UserController implements Initializable {
             memberIdField.setText("");
             nameField.setText("");
             genderChoiceBox.getSelectionModel().clearSelection();
-            entryTimeField.setText("");
+            timePicker.setValue(null);
+//            entryTimeField.setText("");
             teamChoiceBox.getItems().clear();
             idField.setText("");
             phoneField.setText("");
@@ -122,7 +139,8 @@ public class UserController implements Initializable {
                 memberIdField.setText(user.getUserId());
                 nameField.setText(user.getUserName());
                 genderChoiceBox.setValue(TransferType.convertGender(user.getGender()));
-                entryTimeField.setText(TransferType.convertTime(user.getEntryTime()));
+                timePicker.setValue(user.getEntryTime());
+//                entryTimeField.setText(TransferType.convertTime(user.getEntryTime()));
                 teamChoiceBox.getItems().addAll(user.getPositionList());
                 idField.setText(user.getIdCard());
                 phoneField.setText(user.getPhone());
@@ -184,7 +202,8 @@ public class UserController implements Initializable {
 
                 nameFieldV.setText(user.getUserName());
                 genderV.setText(TransferType.convertGender(user.getGender()));
-                entryTimeFieldV.setText(TransferType.convertTime(user.getEntryTime()));
+                entryTimeFieldV.setText(user.getEntryTime().toString());
+//                entryTimeFieldV.setText(TransferType.convertTime(user.getEntryTime()));
 //                Optional.ofNullable(teamChoiceBoxV)
 //                        .ifPresent(choiceBox -> choiceBox.getItems().addAll(user.getPositionList()));
                 teamChoiceBoxV.getItems().addAll(user.getPositionList());
@@ -227,12 +246,13 @@ public class UserController implements Initializable {
                 throw new MyException("请先查询用户信息！");
             }
             String userId = HostHolder.getUsers().getUserId();
-            String entryTime = entryTimeField.getText().isEmpty() ? LocalDate.now().toString() : entryTimeField.getText();
+//            String entryTime = entryTimeField.getText().isEmpty() ? LocalDate.now().toString() : entryTimeField.getText();
             UserEntity user = UserEntity.builder()
                     .userId(memberIdField.getText())
                     .userName(nameField.getText())
                     .gender(TransferType.convertGender(Optional.ofNullable(genderChoiceBox.getValue()).orElse("未选择")))
-                    .entryTime(TransferType.convertTime(entryTime))
+                    .entryTime(timePicker.getValue())
+//                    .entryTime(TransferType.convertTime(entryTime))
                     .idCard(idField.getText())
                     .phone(phoneField.getText())
                     .email(emailField.getText())
@@ -368,11 +388,11 @@ public class UserController implements Initializable {
     public void handleAddUser(ActionEvent actionEvent) {
         try {
             String userId = HostHolder.getUsers().getUserId();
-            String entryTime = entryTimeField.getText().isEmpty() ? LocalDate.now().toString() : entryTimeField.getText();
+//            String entryTime = entryTimeField.getText().isEmpty() ? LocalDate.now().toString() : entryTimeField.getText();
             UserEntity user = UserEntity.builder()
                     .userName(nameField.getText())
                     .gender(TransferType.convertGender(Optional.ofNullable(genderChoiceBox.getValue()).orElse("未选择")))
-                    .entryTime(TransferType.convertTime(entryTime))
+                    .entryTime(timePicker.getValue())
                     .idCard(idField.getText())
                     .phone(phoneField.getText())
                     .email(emailField.getText())
