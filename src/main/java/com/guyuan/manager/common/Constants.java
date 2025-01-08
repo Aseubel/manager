@@ -7,5 +7,7 @@ package com.guyuan.manager.common;
  */
 public class Constants {
     // 查询团队时单页显示的成员数量
-    public static final Integer TEAM_PER_PAGE_MEMBER_LIMIT = 5;
+    public static final Integer TEAM_PER_PAGE_MEMBER_LIMIT = 15;
+    // 查询团队时每个成员单元格的高度
+    public static final Integer TEAM_PER_PAGE_MEMBER_HEIGHT = 30;
 }

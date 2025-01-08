@@ -11,7 +11,7 @@
            stylesheets="@styles.css">
     <VBox spacing="5">
         <HBox spacing="10" alignment="CENTER">
-            <Label text="搜索姓名:"/>
+            <Label text="搜索团队名称:"/>
             <TextField fx:id="searchTeamNameField" promptText="输入团队名称"/>
             <Button text="搜索" onAction="#handleSearchTeam"/>
         </HBox>
@@ -33,24 +33,24 @@
             <Label text="人数:" GridPane.rowIndex="3"/>
             <Label fx:id="memberCountField" GridPane.columnIndex="1"/>
 
-            <TableView fx:id="membersTableView" GridPane.rowIndex="4" GridPane.columnSpan="6" prefHeight="500">
+            <TableView fx:id="membersTableView" GridPane.rowIndex="4" GridPane.columnSpan="8">
                 <columns>
-                    <TableColumn text="姓名" fx:id="memberNameColumn">
+                    <TableColumn text="姓名" fx:id="memberNameColumn" prefWidth="100.0">
                         <cellValueFactory>
                             <PropertyValueFactory property="userName"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="手机号码" fx:id="phoneColumn">
+                    <TableColumn text="手机号码" fx:id="phoneColumn" prefWidth="150.0">
                         <cellValueFactory>
                             <PropertyValueFactory property="phone"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="专业" fx:id="majorColumn">
+                    <TableColumn text="专业" fx:id="majorColumn" prefWidth="100.0">
                         <cellValueFactory>
                             <PropertyValueFactory property="major"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="邮箱" fx:id="emailColumn">
+                    <TableColumn text="邮箱" fx:id="emailColumn" prefWidth="200.0">
                         <cellValueFactory>
                             <PropertyValueFactory property="email"/>
                         </cellValueFactory>

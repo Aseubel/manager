@@ -10,22 +10,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.guyuan.manager.common.Constants.TEAM_PER_PAGE_MEMBER_LIMIT;
+import static com.guyuan.manager.common.Constants.*;
 
 /**
  * @author 杨之耀
@@ -63,6 +58,7 @@ public class TeamController implements Initializable {
                 memberCountField.setText("");
                 createTimeField.setText("");
                 contactField.setText("");
+                membersTableView.setMaxHeight(TEAM_PER_PAGE_MEMBER_HEIGHT * TEAM_PER_PAGE_MEMBER_LIMIT);
             default:
         }
     }
