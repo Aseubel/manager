@@ -31,7 +31,7 @@
             <Label fx:id="createTimeField" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
 
             <Label text="人数:" GridPane.rowIndex="3"/>
-            <Label fx:id="memberCountField" GridPane.columnIndex="1"/>
+            <Label fx:id="memberCountField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
             <TableView fx:id="membersTableView" GridPane.rowIndex="4" GridPane.columnSpan="8">
                 <columns>
