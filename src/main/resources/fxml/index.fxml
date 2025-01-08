@@ -26,8 +26,8 @@
                 <Menu text="团队管理">
                     <MenuItem onAction="#listTeam" text="团队列表"/>
                     <MenuItem onAction="#searchTeam" text="查找团队"/>
-                    <MenuItem onAction="#addTeam" text="添加团队"/>
-                    <MenuItem onAction="#modifyTeam" text="修改团队"/>
+<!--                    <MenuItem onAction="#addTeam" text="添加团队"/>-->
+<!--                    <MenuItem onAction="#modifyTeam" text="修改团队"/>-->
                 </Menu>
                 <Menu text="系统操作">
                     <MenuItem onAction="#lastPage" text="上一页"/>
