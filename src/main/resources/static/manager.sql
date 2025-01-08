@@ -476,12 +476,16 @@ CREATE TABLE IF NOT EXISTS `team` (
     `team_name`  VARCHAR(36) NOT NULL DEFAULT '' COMMENT '团队名称',
     -- 负责人
     `leader`  VARCHAR(36) NOT NULL DEFAULT '' COMMENT '负责人',
+    -- 团队人数
+    `member_count` INTEGER UNSIGNED NOT NULL DEFAULT 0 COMMENT '团队人数',
+    -- 联系方式
+    `contact` VARCHAR(36) NOT NULL DEFAULT '' COMMENT '联系方式',
     -- 创建时间
     `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     -- 更新时间
     `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '用户-权限';
 
-insert into team (team_id,team_name,leader) values ('0000','未选择团队','杨之耀');
-insert into team (team_id,team_name,leader) values ('0001','Aseubel1.0','杨之耀');
-insert into team (team_id,team_name,leader) values ('0002','Aseubel2.0','杨之耀');
+insert into team (team_id,team_name,leader,member_count,contact) values ('0000','未选择团队','杨之耀',1,'123@hh.com');
+insert into team (team_id,team_name,leader,member_count,contact) values ('0001','Aseubel1.0','杨之耀',20,'422@hh.com');
+insert into team (team_id,team_name,leader,member_count,contact) values ('0002','Aseubel2.0','杨之耀',11,'551@sr.com');
