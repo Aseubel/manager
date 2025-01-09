@@ -173,4 +173,10 @@
         group by position_id
     </select>
 
+    <select id="getPositionIdByPositionNameAndTeamId" resultType="java.lang.String">
+        select position_id from position
+        where position_name=#{positionName} and team_id=#{teamId}
+        and is_deleted = 0
+    </select>
+
 </mapper>

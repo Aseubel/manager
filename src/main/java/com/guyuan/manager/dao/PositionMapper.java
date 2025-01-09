@@ -4,8 +4,6 @@ import com.guyuan.manager.Entity.PositionEntity;
 import com.guyuan.manager.dao.po.PositionPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.Collection;
 import java.util.List;
@@ -100,16 +98,6 @@ public interface PositionMapper {
      * @param positions
      * @return
      */
-//    @ResultType(PositionPO.class)
-//    @Select("""
-//            select id,position_id,position_name,level,subordinate,team_id,
-//                            create_by,create_time,update_by,update_time
-//                    from position
-//                    where subordinate in
-//                    <foreach collection="positions" item="position" separator="," open="(" close=")">
-//                            #{position.positionId}
-//                    </foreach>
-//                            and is_deleted = 0""")
     List<PositionPO> listParentPositionByPositions(@Param("positions")Collection<PositionPO> positions);
 
     /**
@@ -117,16 +105,6 @@ public interface PositionMapper {
      * @param userId
      * @return
      */
-//    @ResultType(PositionPO.class)
-//    @Select("""
-//            select t1.id,t1.position_id,t1.position_name,t1.level,t1.subordinate,t1.team_id,
-//                            t1.create_by,t1.create_time,t1.update_by,t1.update_time
-//                    from position as t1, user_position as t2
-//                    where t2.user_id = #{userId}
-//                            and t1.position_id = t2.position_id
-//                            and t1.subordinate = ''
-//                            and t1.is_deleted = 0
-//                            and t2.is_deleted = 0""")
     List<PositionPO> listPositionByUserId(@Param("userId") String userId);
 
     /**
@@ -155,4 +133,12 @@ public interface PositionMapper {
      * @param userId
      */
     void deletePositionByUserId(@Param("userId") String userId);
+
+    /**
+     * 根据团队id和职位名称获取职位id
+     * @param positionName
+     * @param teamId
+     * @return
+     */
+    String getPositionIdByPositionNameAndTeamId(@Param("positionName") String positionName, @Param("teamId") String teamId);
 }

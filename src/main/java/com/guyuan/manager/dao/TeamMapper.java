@@ -3,6 +3,7 @@ package com.guyuan.manager.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guyuan.manager.Entity.TeamEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author 杨之耀
@@ -11,4 +12,11 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface TeamMapper extends BaseMapper<TeamEntity> {
+
+    /**
+     * 根据团队名称获取团队id
+     * @param teamName
+     * @return
+     */
+    String getTeamIdByTeamName(@Param("teamName") String teamName);
 }
