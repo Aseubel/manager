@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -85,6 +86,14 @@ public class TeamController implements Initializable {
                 memberList.clear();
                 memberList.addAll(userService.
                         queryMemberList(team.getTeamId(), lastUserId, TEAM_PER_PAGE_MEMBER_LIMIT));
+            } else {
+                log.error("团队不存在！teamName：{}", searchTeamNameField.getText());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("错误提示");
+                alert.setHeaderText("团队不存在！");
+                alert.setContentText("请重新输入");
+                alert.showAndWait();
+                return;
             }
         } catch (MyException e) {
             log.error("查询团队时出现异常, {}", e.getMessage());
