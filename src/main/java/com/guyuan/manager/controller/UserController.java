@@ -2,6 +2,7 @@ package com.guyuan.manager.controller;
 
 import ch.qos.logback.core.util.StringUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.guyuan.manager.Entity.TeamEntity;
 import com.guyuan.manager.Entity.UserEntity;
 import com.guyuan.manager.exception.MyException;
 import com.guyuan.manager.service.ITeamService;
@@ -22,6 +23,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * @author 杨之耀
@@ -82,7 +84,10 @@ public class UserController implements Initializable {
         String[] path = url.getPath().split("/");
         String fileName = path[path.length - 1];
         if (fileName.equals("modifyUser.fxml")) {
-            ObservableList<String> options1 = FXCollections.observableArrayList("研发组", "设计组", "产品组","团队负责人");
+            ObservableList<String> options1 = FXCollections.observableArrayList(
+                    teamService.list().stream()
+                            .map(TeamEntity::getTeamName)
+                            .collect(Collectors.toList()));
             comboBoxt.setItems(options1);
             // 监听时间选择事件
             timePicker.setOnAction(event -> {
@@ -94,7 +99,10 @@ public class UserController implements Initializable {
                 }
             });
         } else if (fileName.equals("addUser.fxml")) {
-            ObservableList<String> options1 = FXCollections.observableArrayList("研发组", "设计组", "产品组","团队负责人");
+            ObservableList<String> options1 = FXCollections.observableArrayList(
+                    teamService.list().stream()
+                            .map(TeamEntity::getTeamName)
+                            .collect(Collectors.toList()));
             comboBoxt.setItems(options1);
         }
     }

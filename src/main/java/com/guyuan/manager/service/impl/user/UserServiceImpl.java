@@ -11,11 +11,13 @@ import com.guyuan.manager.dao.po.UserPO;
 import com.guyuan.manager.exception.MyException;
 import com.guyuan.manager.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j

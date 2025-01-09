@@ -2,7 +2,6 @@ package com.guyuan.manager.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.guyuan.manager.Entity.UserEntity;
-import com.guyuan.manager.annotation.DoRequest;
 import com.guyuan.manager.service.IUserService;
 import com.guyuan.manager.util.HostHolder;
 import com.guyuan.manager.util.HttpClientUtils;
@@ -11,18 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @Slf4j

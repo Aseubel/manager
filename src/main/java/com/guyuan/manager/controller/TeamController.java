@@ -20,7 +20,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.guyuan.manager.common.Constants.*;
+import static com.guyuan.manager.common.Constants.TEAM_PER_PAGE_MEMBER_HEIGHT;
+import static com.guyuan.manager.common.Constants.TEAM_PER_PAGE_MEMBER_LIMIT;
 
 /**
  * @author 杨之耀

@@ -1,24 +1,20 @@
 package com.guyuan.manager.controller;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.guyuan.manager.util.*;
+import com.guyuan.manager.util.HostHolder;
+import com.guyuan.manager.util.HttpClientUtils;
+import com.guyuan.manager.util.TransferScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import static com.guyuan.manager.ManagerApplication.applicationContext;
 
 /**
  * @author yangzhiyao

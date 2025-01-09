@@ -91,16 +91,16 @@
 			<artifactId>javafx-fxml</artifactId>
 			<version>23.0.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics</artifactId>
-			<version>23.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base</artifactId>
-			<version>23.0.1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.openjfx</groupId>-->
+<!--			<artifactId>javafx-graphics</artifactId>-->
+<!--			<version>23.0.1</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.openjfx</groupId>-->
+<!--			<artifactId>javafx-base</artifactId>-->
+<!--			<version>23.0.1</version>-->
+<!--		</dependency>-->
 
 
 		<dependency>
