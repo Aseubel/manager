@@ -210,7 +210,9 @@ public class UserController implements Initializable {
 
                 nameFieldV.setText(user.getUserName());
                 genderV.setText(TransferType.convertGender(user.getGender()));
-                entryTimeFieldV.setText(user.getEntryTime().toString());
+                Optional.ofNullable(user.getEntryTime())
+                        .map(LocalDate::toString)
+                        .ifPresent(entryTimeFieldV::setText);
 //                entryTimeFieldV.setText(TransferType.convertTime(user.getEntryTime()));
 //                Optional.ofNullable(teamChoiceBoxV)
 //                        .ifPresent(choiceBox -> choiceBox.getItems().addAll(user.getPositionList()));
@@ -218,7 +220,9 @@ public class UserController implements Initializable {
                 idFieldV.setText(user.getIdCard());
                 phoneFieldV.setText(user.getPhone());
                 emailFieldV.setText(user.getEmail());
-                gradeFieldV.setText(user.getGrade().toString());
+                Optional.ofNullable(user.getGrade())
+                        .map(Object::toString)
+                        .ifPresent(gradeFieldV::setText);
                 studentIdFieldV.setText(user.getStudentId());
                 majorFieldV.setText(user.getMajor());
                 experienceAreaV.setText(user.getExperience());
