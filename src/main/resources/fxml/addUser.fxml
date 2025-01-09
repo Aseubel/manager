@@ -38,9 +38,11 @@
 <!--            <TextField fx:id="entryTimeField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>-->
 
             <Label text="所属团队/职位：" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-font-weight: bold;"/>
-            <ChoiceBox fx:id="teamChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-min-width: 100"/>
-            <Button text="-" onAction="#handleRemovePosition" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
-            <VBox GridPane.rowIndex="1" GridPane.columnIndex="5">
+            <HBox alignment="CENTER" spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                <ChoiceBox fx:id="teamChoiceBox" style="-fx-min-width: 100;-fx-max-width: 100"/>
+                <Button text="-" onAction="#handleRemovePosition"/>
+            </HBox>
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="4">
                 <ComboBox fx:id="comboBoxt" onAction="#handleComboBox1Action"/>
                 <ComboBox fx:id="comboBox1" onAction="#handleComboBox2Action" disable="true"/>
                 <ComboBox fx:id="comboBox2" onAction="#handleComboBox3Action" disable="true"/>
