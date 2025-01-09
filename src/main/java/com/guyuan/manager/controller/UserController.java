@@ -272,6 +272,11 @@ public class UserController implements Initializable {
                     .positionList(teamChoiceBox.getItems())
                     .build();
             userService.modifyUserInfo(user, userId);
+            // 保存成功提示
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("成功提示");
+            alert.setHeaderText("保存" + user.getUserName() + "用户信息成功！");
+            alert.showAndWait();
         } catch (Exception e) {
             log.error("保存用户失败！",e);
             Alert alert = new Alert(Alert.AlertType.ERROR);
