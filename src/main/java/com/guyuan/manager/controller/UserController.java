@@ -285,55 +285,38 @@ public class UserController implements Initializable {
 
     @FXML
     private void handleComboBox1Action() {
-        String selectedOption = comboBoxt.getValue();
-        // 根据第一个下拉框的选值更新第二个下拉框的内容
-        ObservableList<String> options1 = switch (selectedOption) {
-            case "研发组" -> FXCollections.observableArrayList("前端组", "后端组");
-            case "设计组" -> FXCollections.observableArrayList("实习设计师", "设计组负责人");
-            case "产品组" -> FXCollections.observableArrayList("产品经理", "产品组负责人");
-            default -> FXCollections.observableArrayList();
-        };
+        String selectedTeam = comboBoxt.getValue();
+        // 根据第一个下拉框的选值更新第二个下拉框的内容，1级职位
+        ObservableList<String> options1 = FXCollections.observableArrayList(teamService.querySubordinatePosition(selectedTeam, selectedTeam));
         comboBox1.setItems(options1);
         comboBox1.setDisable(options1.isEmpty());
     }
     @FXML
     private void handleComboBox2Action() {
-        String selectedOption = comboBoxt.getValue();
-        // 根据第一个下拉框的选值更新第二个下拉框的内容
-        ObservableList<String> options2 = switch (selectedOption) {
-            case "研发组" -> FXCollections.observableArrayList("前端组", "后端组");
-            case "设计组" -> FXCollections.observableArrayList("实习设计师", "设计组负责人");
-            case "产品组" -> FXCollections.observableArrayList("产品经理", "产品组负责人");
-            default -> FXCollections.observableArrayList();
-        };
-        comboBox1.setItems(options2);
-        comboBox1.setDisable(options2.isEmpty());
+        String selectedTeam = comboBoxt.getValue();
+        String selectedOption = comboBox1.getValue();
+        // 根据第二个下拉框的选值更新第三个下拉框的内容，2级职位
+        ObservableList<String> options2 = FXCollections.observableArrayList(teamService.querySubordinatePosition(selectedOption, selectedTeam));
+        comboBox2.setItems(options2);
+        comboBox2.setDisable(options2.isEmpty());
     }
     @FXML
     private void handleComboBox3Action() {
-        String selectedOption = comboBoxt.getValue();
-        // 根据第一个下拉框的选值更新第二个下拉框的内容
-        ObservableList<String> options3 = switch (selectedOption) {
-            case "研发组" -> FXCollections.observableArrayList("前端组", "后端组");
-            case "设计组" -> FXCollections.observableArrayList("实习设计师", "设计组负责人");
-            case "产品组" -> FXCollections.observableArrayList("产品经理", "产品组负责人");
-            default -> FXCollections.observableArrayList();
-        };
-        comboBox1.setItems(options3);
-        comboBox1.setDisable(options3.isEmpty());
+        String selectedTeam = comboBoxt.getValue();
+        String selectedOption = comboBox2.getValue();
+        // 根据第三个下拉框的选值更新第四个下拉框的内容，3级职位
+        ObservableList<String> options3 = FXCollections.observableArrayList(teamService.querySubordinatePosition(selectedOption, selectedTeam));
+        comboBox3.setItems(options3);
+        comboBox3.setDisable(options3.isEmpty());
     }
     @FXML
     private void handleComboBox4Action() {
-        String selectedOption = comboBoxt.getValue();
-        // 根据第一个下拉框的选值更新第二个下拉框的内容
-        ObservableList<String> options4 = switch (selectedOption) {
-            case "研发组" -> FXCollections.observableArrayList("前端组", "后端组");
-            case "设计组" -> FXCollections.observableArrayList("实习设计师", "设计组负责人");
-            case "产品组" -> FXCollections.observableArrayList("产品经理", "产品组负责人");
-            default -> FXCollections.observableArrayList();
-        };
-        comboBox1.setItems(options4);
-        comboBox1.setDisable(options4.isEmpty());
+        String selectedTeam = comboBoxt.getValue();
+        String selectedOption = comboBox3.getValue();
+        // 根据第四个下拉框的选值更新第五个下拉框的内容，4级职位
+        ObservableList<String> options4 = FXCollections.observableArrayList(teamService.querySubordinatePosition(selectedOption, selectedTeam));
+        comboBox4.setItems(options4);
+        comboBox4.setDisable(options4.isEmpty());
     }
     /**
      * 删除用户的团队/职位

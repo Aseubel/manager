@@ -42,9 +42,9 @@
             <Button text="-" onAction="#handleRemovePosition" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
             <VBox GridPane.rowIndex="1" GridPane.columnIndex="5">
                 <ComboBox fx:id="comboBoxt" onAction="#handleComboBox1Action"/>
-                <ComboBox fx:id="comboBox1" disable="true"/>
-                <ComboBox fx:id="comboBox2" disable="true"/>
-                <ComboBox fx:id="comboBox3" disable="true"/>
+                <ComboBox fx:id="comboBox1" onAction="#handleComboBox2Action" disable="true"/>
+                <ComboBox fx:id="comboBox2" onAction="#handleComboBox3Action" disable="true"/>
+                <ComboBox fx:id="comboBox3" onAction="#handleComboBox4Action" disable="true"/>
                 <ComboBox fx:id="comboBox4" disable="true"/>
             </VBox>
             <Button text="+" onAction="#handlePlusPosition" GridPane.rowIndex="1" GridPane.columnIndex="6"/>
