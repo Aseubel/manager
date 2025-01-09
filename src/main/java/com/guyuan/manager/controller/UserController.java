@@ -369,7 +369,9 @@ public class UserController implements Initializable {
                 }
             }
         }
-        teamChoiceBox.getItems().add(newPosition.toString());
+        if(!newPosition.isEmpty()){
+            teamChoiceBox.getItems().add(newPosition.toString());
+        }
 
         // 清空选项
         comboBoxt.setValue(null);
